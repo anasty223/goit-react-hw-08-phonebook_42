@@ -1,0 +1,18 @@
+.list {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+}
+
+.listItem {
+    margin-right: 30px;
+}
+
+.navLink {
+    display: flex;
+    color: black;
+}
+
+.activeStyle {
+    color: blue;
+}
