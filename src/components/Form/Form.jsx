@@ -39,9 +39,9 @@ export default function Form() {
     } else {
       dispatch(addContacts({ name, number }));
 
-      toast(({ data }) => `Added ${name} in Phonebook`, {
-        data: "world",
-      });
+      // toast(({ data }) => `Added ${name} in Phonebook`, {
+      //   data: "world",
+      // });
     }
 
     setName("");
