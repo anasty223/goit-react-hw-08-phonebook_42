@@ -10,9 +10,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="/register" component={RegisterView} />
-        <Route path="/login" component={LoginView} />
         <Route index element={<Home />} />
+        <Route path="/register" element={<RegisterView />} />
+        <Route path="/login" element={<LoginView />} />
+
         <Route path="phonebook" element={<Contacts />} />
       </Route>
     </Routes>
