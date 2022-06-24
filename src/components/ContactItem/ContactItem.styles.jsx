@@ -22,7 +22,7 @@ export const ButtonDelete = styled.button`
   margin-left: auto;
   border-radius: 4px;
   padding: 12px;
-  background-color: grey;
+  background-color: rgba(148, 175, 101, 1);
   color: white;
   border: none;
 `;

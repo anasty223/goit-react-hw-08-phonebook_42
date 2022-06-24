@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { register } from "../../src/redux/auth/auth-operation";
+import { useDispatch } from "react-redux";
 import {
   Form,
   Label,
@@ -9,14 +11,15 @@ import {
 } from "../styles/LoginViews.styles";
 
 export default function RegisterView() {
-  const [login, setLogin] = useState("");
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
-      case "login":
-        return setLogin(value);
+      case "email":
+        return setEmail(value);
       case "password":
         return setPassword(value);
       case "name":
@@ -25,9 +28,16 @@ export default function RegisterView() {
         return;
     }
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(register({ name, email, password }));
+    setName("");
+    setEmail("");
+    setPassword("");
+  };
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <h2>Sign Up</h2>
 
       <P>
@@ -43,14 +53,14 @@ export default function RegisterView() {
         />
       </P>
       <P>
-        <Label htmlFor="login" className="floatLabel">
+        <Label htmlFor="email" className="floatLabel">
           Email
         </Label>
         <Input
-          id="login"
-          name="login"
-          type="login"
-          value={login}
+          id="email"
+          name="email"
+          type="email"
+          value={email}
           onChange={handleChange}
         />
       </P>

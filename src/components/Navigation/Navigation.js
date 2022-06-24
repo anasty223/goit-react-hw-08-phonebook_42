@@ -5,7 +5,7 @@ const Navigation = () => {
   const location = useLocation();
   return (
     <>
-      {!location.pathname.includes("/details") && (
+      {
         <nav>
           <ul className={style.list}>
             <li className={style.listItem}>
@@ -29,30 +29,9 @@ const Navigation = () => {
                 Phonebook
               </NavLink>
             </li>
-            <li className={style.listItem}>
-              <NavLink
-                to={"/register"}
-                className={({ isActive }) =>
-                  isActive ? style.activeStyle : style.navLink
-                }
-              >
-                Registration
-              </NavLink>
-            </li>
-
-            <li className={style.listItem}>
-              <NavLink
-                to={"/login"}
-                className={({ isActive }) =>
-                  isActive ? style.activeStyle : style.navLink
-                }
-              >
-                Login
-              </NavLink>
-            </li>
           </ul>
         </nav>
-      )}
+      }
     </>
   );
 };
