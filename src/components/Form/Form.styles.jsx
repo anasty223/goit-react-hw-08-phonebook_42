@@ -20,11 +20,9 @@ export const Label = styled.label`
 export const ButtonAdd = styled.button`
   border-radius: 4px;
   padding: 3px 24px;
-  background-color: rgba(148, 175, 101, 1);
+  background-color: grey;
   color: white;
   text-align: center;
   vertical-align: middle;
-  font-size: 1.2rem;
-  height: 33px;
-  border: none;
+  font-size: 1rem;
 `;

@@ -32,7 +32,7 @@ export const logIn = createAsyncThunk("auth/login", async (credential) => {
     alert("Welcome!");
     return data;
   } catch (error) {
-    alert.error("Incorrect password or login, try again");
+    alert("Incorrect password or login, try again");
   }
 });
 

@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import todoReducer from "./reducer";
 import storage from "redux-persist/lib/storage";
+import { contactsApi } from "./contacts/contacts-operation";
 import logger from "redux-logger";
 import authReducer from "./auth/sliceAuth";
+import { setupListeners } from "@reduxjs/toolkit/query";
 
 import {
   persistStore,
@@ -19,7 +21,7 @@ const middleware = (getDefaultMiddleware) =>
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
-  }).concat(logger);
+  }).concat(logger, contactsApi.middleware);
 
 const persistConfig = {
   key: "items",
@@ -33,9 +35,11 @@ const authPersistConfig = {
   storage,
   whitelist: ["token"],
 };
+
 const store = configureStore({
   reducer: {
     contacts: persistedReducer,
+    [contactsApi.reducerPath]: contactsApi.reducer,
     auth: persistReducer(authPersistConfig, authReducer),
   },
   middleware,
@@ -44,3 +48,4 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 export { store, persistor };
+setupListeners(store.dispatch);
