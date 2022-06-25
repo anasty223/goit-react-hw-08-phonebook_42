@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import todoReducer from "./reducer";
+import todoReducer from "./contacts/reducers";
 import storage from "redux-persist/lib/storage";
 import { contactsApi } from "./contacts/contacts-operation";
 import logger from "redux-logger";
@@ -28,7 +28,6 @@ const persistConfig = {
   storage,
   blacklist: ["filter"],
 };
-const persistedReducer = persistReducer(persistConfig, todoReducer);
 
 const authPersistConfig = {
   key: "auth",
@@ -38,7 +37,7 @@ const authPersistConfig = {
 
 const store = configureStore({
   reducer: {
-    contacts: persistedReducer,
+    contacts: persistReducer(persistConfig, todoReducer),
     [contactsApi.reducerPath]: contactsApi.reducer,
     auth: persistReducer(authPersistConfig, authReducer),
   },
