@@ -5,10 +5,10 @@ import { AiFillFolderOpen } from "react-icons/ai";
 import { useAddContactsMutation } from "../../redux/contacts/contacts-operation";
 
 export default function Form({ contacts }) {
-  const [addContact] = useAddContactsMutation();
+  const [addContacts] = useAddContactsMutation();
 
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [number, setNumber] = useState("");
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -18,8 +18,8 @@ export default function Form({ contacts }) {
         setName(value);
         break;
 
-      case "phone":
-        setPhone(value);
+      case "number":
+        setNumber(value);
         break;
 
       default:
@@ -33,15 +33,15 @@ export default function Form({ contacts }) {
     if (returnName) {
       toast.warn("This name is already in the phonebook ");
     } else {
-      addContact({ name, phone });
-
+      addContacts({ name, number }).then(console.log);
+      alert("succes");
       // toast(({ data }) => `Added ${name} in Phonebook`, {
       //   data: "world",
       // });
     }
 
     setName("");
-    setPhone("");
+    setNumber("");
   };
 
   return (
@@ -64,11 +64,11 @@ export default function Form({ contacts }) {
           Number
           <Input
             type="tel"
-            name="phone"
+            name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
-            value={phone}
+            value={number}
             onChange={handleInputChange}
           />
           <ButtonAdd type="submit">

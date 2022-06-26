@@ -5,12 +5,12 @@ import ContactItem from "../ContactItem/ContactItem";
 function ContactsList({ contacts, onDeleteContact }) {
   return (
     <List>
-      {contacts.map(({ id, name, phone }) => (
+      {contacts.map(({ id, name, number }) => (
         <ContactItem
           key={id}
           id={id}
           name={name}
-          phone={phone}
+          number={number}
           func={onDeleteContact}
         />
       ))}

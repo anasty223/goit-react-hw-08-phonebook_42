@@ -21,16 +21,13 @@ export default function Contacts() {
   const { data, isLoading } = useGetContactsQuery();
   console.log("data", data);
   const filter = useSelector(getFilter);
-  console.log("data", data);
-  console.log("isLoading", isLoading);
 
   const [deleteContact] = useDeleteContactsMutation();
 
   const getVisibleContact = () => {
-    const normalizeFilter = filter.toLowerCase();
-
-    return data.filter((contact) =>
-      contact.name.toLowerCase().includes(normalizeFilter)
+    const normalizedFilter = filter.toLowerCase();
+    return data.filter(({ name }) =>
+      name.toLowerCase().includes(normalizedFilter)
     );
   };
   return (

@@ -2,11 +2,11 @@ import { Item, ButtonDelete } from "./ContactItem.styles";
 import { AiFillDelete } from "react-icons/ai";
 import PropTypes from "prop-types";
 
-function ContactItem({ name, phone, func, id }) {
+function ContactItem({ name, number, func, id }) {
   return (
     <Item>
       {name}
-      <p>( {phone} )</p>
+      <p>( {number} )</p>
       <ButtonDelete type="submit" onClick={() => func(id)}>
         DELETE
         <AiFillDelete size="1.2rem" />
