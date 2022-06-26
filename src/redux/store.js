@@ -22,7 +22,7 @@ const middleware = [
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
-  }),
+  }).concat(contactsApi.middleware),
 ];
 const persistConfig = {
   key: "items",
