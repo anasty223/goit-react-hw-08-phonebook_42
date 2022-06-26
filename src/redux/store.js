@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import todoReducer from "./contacts/reducers";
 import storage from "redux-persist/lib/storage";
 import { contactsApi } from "./contacts/contacts-operation";
@@ -16,13 +16,14 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-const middleware = (getDefaultMiddleware) =>
-  getDefaultMiddleware({
+
+const middleware = [
+  ...getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
-  }).concat(logger, contactsApi.middleware);
-
+  }),
+];
 const persistConfig = {
   key: "items",
   storage,
@@ -37,7 +38,7 @@ const authPersistConfig = {
 
 const store = configureStore({
   reducer: {
-    contacts: persistReducer(persistConfig, todoReducer),
+    contacts: todoReducer, //persistReducer(persistConfig, todoReducer),
     [contactsApi.reducerPath]: contactsApi.reducer,
     auth: persistReducer(authPersistConfig, authReducer),
   },

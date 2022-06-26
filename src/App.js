@@ -5,8 +5,15 @@ import Home from "./components/Home/Home";
 import RegisterView from "./pages/RegisterView";
 import LoginView from "./pages/LoginView";
 import Layout from "./components/Layout/Layout";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchCurrentUser } from "../src/redux/auth/auth-operation";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
