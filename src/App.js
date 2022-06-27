@@ -1,32 +1,43 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Layout from "./components/Layout/Layout";
 import { useEffect, Suspense, lazy } from "react";
 import { fetchCurrentUser } from "../src/redux/auth/auth-operation";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
+import authSelectors from "./redux/auth/auth-selectors";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { Hearts } from "react-loader-spinner";
 
-const Home = lazy(() => import("./components/Home/Home"));
-const Layout = lazy(() => import("./components/Layout/Layout"));
-const RegisterView = lazy(() => import("./pages/RegisterView"));
-const LoginView = lazy(() => import("./pages/LoginView"));
-const Contacts = lazy(() => import("./components/Contacts/Contacts"));
+const Home = lazy(
+  () => import("./components/Home/Home") /* webpackChunkName: "home" */
+);
+const RegisterView = lazy(
+  () => import("./pages/RegisterView") /* webpackChunkName: "RegisterView" */
+);
+const LoginView = lazy(
+  () => import("./pages/LoginView") /* webpackChunkName: "LoginView" */
+);
+const Contacts = lazy(
+  () =>
+    import("./components/Contacts/Contacts") /* webpackChunkName: "Contacts" */
+);
 
 function App() {
+  const isRefreshing = useSelector(authSelectors.getIsRefreshing);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
-  return (
+
+  return isRefreshing ? (
+    <Hearts color="#00BFFF" height={80} width={80} />
+  ) : (
     <>
       <Layout />
       <Suspense fallback={<p>Загружаем...</p>}>
         <Routes>
-          {/* <Route path="/" element={<Layout />}> */}
-          {/* <Route index element={<Home />} /> */}
-          {/* <Route path="/register" element={<RegisterView />} /> */}
-          {/* <Route path="/login" element={<LoginView />} /> */}
-
           <Route path="/" element={<PublicRoute component={<Home />} />} />
 
           <Route
@@ -57,7 +68,6 @@ function App() {
               <PrivateRoute component={<Contacts />} navigateTo="/login" />
             }
           />
-          {/* </Route> */}
         </Routes>
       </Suspense>
     </>
