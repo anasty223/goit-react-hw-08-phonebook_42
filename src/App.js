@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "./components/Layout/Layout";
 import { useEffect, Suspense, lazy } from "react";
@@ -32,7 +33,7 @@ function App() {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <Hearts color="#00BFFF" height={80} width={80} />
+    <Hearts color="#00BFFF" height="100" width="100" ariaLabel="loading" />
   ) : (
     <>
       <Layout />
