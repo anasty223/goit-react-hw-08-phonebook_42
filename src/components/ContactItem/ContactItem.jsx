@@ -1,17 +1,19 @@
-import { Item, ButtonDelete } from "./ContactItem.styles";
-import { AiFillDelete } from "react-icons/ai";
 import PropTypes from "prop-types";
 
 function ContactItem({ name, number, func, id }) {
   return (
-    <Item>
-      {name}
-      <p>( {number} )</p>
-      <ButtonDelete type="submit" onClick={() => func(id)}>
-        DELETE
-        <AiFillDelete size="1.2rem" />
-      </ButtonDelete>
-    </Item>
+    <li className="list-group-item">
+      <h3 className="text-muted">{name}</h3>
+      <p>{number}</p>
+      <div className="position-absolute top-0 end-0">
+        <button
+          type="button"
+          className="btn-close"
+          aria-label="Close"
+          onClick={() => func(id)}
+        ></button>
+      </div>
+    </li>
   );
 }
 export default ContactItem;

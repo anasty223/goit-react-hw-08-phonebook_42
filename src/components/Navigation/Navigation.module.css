@@ -2,10 +2,13 @@
     display: flex;
     list-style: none;
     justify-content: center;
+ 
 }
 
 .listItem {
     margin-right: 30px;
+    font-size: 25px;
+   
 }
 
 .navLink {
@@ -14,5 +17,14 @@
 }
 
 .activeStyle {
-    color: blue;
+    color: green;
+    text-decoration: none;
 }
+
+
+
+
+
+
+
+

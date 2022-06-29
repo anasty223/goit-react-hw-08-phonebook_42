@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import Layout from "./components/Layout/Layout";
+// import Layout from "./components/Layout/Layout";
 import { useEffect, Suspense, lazy } from "react";
 import { fetchCurrentUser } from "../src/redux/auth/auth-operation";
 import PrivateRoute from "./components/PrivateRoute";
@@ -10,6 +10,7 @@ import PublicRoute from "./components/PublicRoute";
 import authSelectors from "./redux/auth/auth-selectors";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Hearts } from "react-loader-spinner";
+import AppBar from "./components/AppBar/AppBar";
 
 const Home = lazy(
   () => import("./components/Home/Home") /* webpackChunkName: "home" */
@@ -36,8 +37,8 @@ function App() {
     <Hearts color="#00BFFF" height="100" width="100" ariaLabel="loading" />
   ) : (
     <>
-      <Layout />
-      <Suspense fallback={<p>Загружаем...</p>}>
+      <AppBar />
+      <Suspense fallback={<p>Donloading...</p>}>
         <Routes>
           <Route path="/" element={<PublicRoute component={<Home />} />} />
 

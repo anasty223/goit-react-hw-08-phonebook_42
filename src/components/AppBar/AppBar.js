@@ -2,16 +2,15 @@ import AuthNav from "../AuthNav/AuthNav";
 import Navigation from "../Navigation/Navigation";
 import { authSelectors } from "../../redux/auth";
 import { useSelector, useDispatch } from "react-redux";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Button } from "react-bootstrap";
 import { logOut } from "../../redux/auth/auth-operation";
-import UserMenu from "../UserMenu/UserMenu";
 
 const styles = {
   header: {
     display: "flex",
-    justifyContent: "space-between",
     alignItems: "center",
-    borderBottom: "1px solid #2A363B",
+
+    marginLeft: "auto",
   },
 };
 const AppBar = () => {
@@ -19,26 +18,27 @@ const AppBar = () => {
   const name = useSelector(authSelectors.getUserName);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+    <Navbar className="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+      <Nav className="navbar-nav ms-auto mb-2 mb-lg-0">
+        <Navigation />
+      </Nav>
       <header style={styles.header}>
-        <Nav>
-          <Navigation />
-          {/* {isLoggedIn ? <UserMenu /> : <AuthNav />} */}
-        </Nav>
+        {isLoggedIn ? (
+          <div style={styles.container}>
+            <Navbar.Brand>Welcome, {name}</Navbar.Brand>
 
-        <Nav>
-          {isLoggedIn ? (
-            <div style={styles.container}>
-              <span style={styles.name}>Welcome, {name}</span>
-
-              <button type="button" onClick={() => dispatch(logOut())}>
-                Выйти
-              </button>
-            </div>
-          ) : (
-            <AuthNav />
-          )}
-        </Nav>
+            <Button
+              className="mr-10"
+              variant="outline-success"
+              type="button"
+              onClick={() => dispatch(logOut())}
+            >
+              LogOut
+            </Button>
+          </div>
+        ) : (
+          <AuthNav />
+        )}
       </header>
     </Navbar>
   );

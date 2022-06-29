@@ -38,7 +38,7 @@ export default function RegisterView() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Sign Up</h2>
+      <h2>Register</h2>
 
       <P>
         <Label htmlFor="name" className="floatLabel">

@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
-import { List } from "./ContactList.styles";
 import ContactItem from "../ContactItem/ContactItem";
 
 function ContactsList({ contacts, onDeleteContact }) {
   return (
-    <List>
+    <ul className="list-group list-group-light list-group-small">
       {contacts.map(({ id, name, number }) => (
         <ContactItem
           key={id}
@@ -14,7 +13,7 @@ function ContactsList({ contacts, onDeleteContact }) {
           func={onDeleteContact}
         />
       ))}
-    </List>
+    </ul>
   );
 }
 export default ContactsList;

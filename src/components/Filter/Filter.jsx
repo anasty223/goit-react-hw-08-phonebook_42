@@ -5,25 +5,26 @@ import { getFilter } from "../../redux/contacts/items-selectors";
 
 const Filter = () => {
   const filter = useSelector(getFilter);
-  // console.log("filter", filter);
+
   const dispatch = useDispatch();
 
   return (
     <>
-      <label>
-        Find contact by name
-        <Input
+      <br />
+      <div className="form-outline">
+        <input
+          className="form-control"
+          id="formControlReadonly"
           type="text"
+          aria-label="readonly input example"
           value={filter}
           onChange={(e) => dispatch(changeFilter(e.currentTarget.value))}
         />
-      </label>
+        <label className="form-label" htmlFor="formControlReadonly">
+          Find contact by name
+        </label>
+      </div>
     </>
   );
 };
 export default Filter;
-
-// Filter.propTypes = {
-//   // value: PropTypes.string,
-//   // onChange: PropTypes.func.isRequired,
-// };

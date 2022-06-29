@@ -65,8 +65,8 @@ export const Form = styled.form`
     padding:10px;
     text-align:center;
     font-size:30px;
-    color:darken(#e5e5e5, 50%);
-    border-bottom:solid 1px #e5e5e5;
+    // color:darken(#e5e5e5, 50%);
+    // // border-bottom:solid 1px #e5e5e5;
 `;
 
 export const P = styled.p`

@@ -1,8 +1,10 @@
 import { NavLink, useLocation, Outlet } from "react-router-dom";
 import style from "../Navigation/Navigation.module.css";
+import { Nav, Link, Navbar } from "react-bootstrap";
 
 export default function AuthNav() {
   return (
+    // <Navbar>
     <ul>
       <li className={style.listItem}>
         <NavLink
@@ -26,5 +28,6 @@ export default function AuthNav() {
         </NavLink>
       </li>
     </ul>
+    // </Navbar>
   );
 }

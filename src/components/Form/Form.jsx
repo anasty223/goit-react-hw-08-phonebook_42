@@ -1,8 +1,7 @@
-import { Input, Label, ButtonAdd, Icon } from "./Form.styles";
 import { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import { AiFillFolderOpen } from "react-icons/ai";
+
 import { useAddContactsMutation } from "../../redux/contacts/contacts-operation";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Form({ contacts }) {
   const [addContacts] = useAddContactsMutation();
@@ -31,13 +30,10 @@ export default function Form({ contacts }) {
     e.preventDefault();
     const returnName = contacts.find((contact) => contact.name === name);
     if (returnName) {
-      toast.warn("This name is already in the phonebook ");
+      toast.error("This name is already in the phonebook ");
     } else {
       addContacts({ name, number }).then(console.log);
-      alert("succes");
-      // toast(({ data }) => `Added ${name} in Phonebook`, {
-      //   data: "world",
-      // });
+      toast.success("Successfully !");
     }
 
     setName("");
@@ -45,12 +41,17 @@ export default function Form({ contacts }) {
   };
 
   return (
-    <>
+    <div className="form-outline">
       <form onSubmit={onSubmitForm}>
-        <Label>
-          Name
-          <Input
+        <div className="input-group input-group-sm mb-3">
+          <span className="input-group-text" id="inputGroup-sizing-sm">
+            Name
+          </span>
+          <input
             type="text"
+            className="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
@@ -58,12 +59,17 @@ export default function Form({ contacts }) {
             value={name}
             onChange={handleInputChange}
           />
-        </Label>
+        </div>
 
-        <Label>
-          Number
-          <Input
+        <div className="input-group input-group-sm mb-3">
+          <span className="input-group-text" id="inputGroup-sizing-sm">
+            Number
+          </span>
+          <input
             type="tel"
+            className="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
@@ -71,15 +77,14 @@ export default function Form({ contacts }) {
             value={number}
             onChange={handleInputChange}
           />
-          <ButtonAdd type="submit">
+        </div>
+        <div className="d-grid gap-2">
+          <button className="btn btn-outline-success" type="submit">
             Add contact
-            <Icon>
-              <AiFillFolderOpen size="1rem" />
-            </Icon>
-          </ButtonAdd>
-        </Label>
+          </button>
+        </div>
       </form>
-      <ToastContainer closeButton={false} />
-    </>
+      <Toaster position="top-left" reverseOrder={false} />
+    </div>
   );
 }
