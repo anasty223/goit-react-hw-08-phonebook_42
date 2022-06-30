@@ -18,8 +18,8 @@ const styles = {
   },
 };
 export default function Contacts() {
-  const { data, isLoading } = useGetContactsQuery();
-  // console.log("data", data);
+  const { data } = useGetContactsQuery();
+
   const filter = useSelector(getFilter);
 
   const [deleteContact] = useDeleteContactsMutation();

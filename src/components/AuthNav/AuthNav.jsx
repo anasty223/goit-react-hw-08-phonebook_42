@@ -1,33 +1,50 @@
-import { NavLink, useLocation, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import style from "../Navigation/Navigation.module.css";
-import { Nav, Link, Navbar } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 
 export default function AuthNav() {
   return (
-    // <Navbar>
-    <ul>
-      <li className={style.listItem}>
-        <NavLink
-          to={"/register"}
-          className={({ isActive }) =>
-            isActive ? style.activeStyle : style.navLink
-          }
-        >
-          Registration
-        </NavLink>
-      </li>
+    <Navbar>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarButtonsExample"
+            aria-controls="navbarButtonsExample"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i className="fas fa-bars"></i>
+          </button>
 
-      <li className={style.listItem}>
-        <NavLink
-          to={"/login"}
-          className={({ isActive }) =>
-            isActive ? style.activeStyle : style.navLink
-          }
-        >
-          Login
-        </NavLink>
-      </li>
-    </ul>
-    // </Navbar>
+          <div className="collapse navbar-collapse" id="navbarButtonsExample">
+            <div className="d-flex align-items-center">
+              <button type="button" className="btn  px-3 me-2">
+                <NavLink
+                  to={"/login"}
+                  className={({ isActive }) =>
+                    isActive ? style.activeStyle : style.navLink
+                  }
+                >
+                  Login
+                </NavLink>
+              </button>
+              <button type="button" className="btn btn-info me-3">
+                <NavLink
+                  to={"/register"}
+                  className={({ isActive }) =>
+                    isActive ? style.activeStyle : style.navLink
+                  }
+                >
+                  Sign up for free
+                </NavLink>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </Navbar>
   );
 }

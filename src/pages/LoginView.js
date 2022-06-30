@@ -35,7 +35,7 @@ export default function LoginView() {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <h2>Sign Up</h2>
+        <h2>Login</h2>
         <P>
           <Label htmlFor="email" className="floatLabel">
             Email

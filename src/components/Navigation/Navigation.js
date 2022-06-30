@@ -12,19 +12,19 @@ const Navigation = () => {
           <div>
             <ul className="navbar-nav mb-2 mb-lg-0 justify-content-center">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                <button type="button" className="btn  px-3 me-2">
                   <NavLink
                     to={"/"}
                     className={({ isActive }) =>
                       isActive ? style.activeStyle : style.navLink
                     }
                   >
-                    Home
+                    <h3 className="display-6">Home</h3>
                   </NavLink>
-                </a>
+                </button>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/phonebook">
+                <button type="button" className="btn  px-3 me-2">
                   {isLoggedIn && (
                     <NavLink
                       to={"/phonebook"}
@@ -32,10 +32,10 @@ const Navigation = () => {
                         isActive ? style.activeStyle : style.navLink
                       }
                     >
-                      Phonebook
+                      <h3 className="display-6">Phonebook</h3>
                     </NavLink>
                   )}
-                </a>
+                </button>
               </li>
             </ul>
           </div>

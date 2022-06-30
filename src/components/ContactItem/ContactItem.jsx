@@ -4,7 +4,10 @@ function ContactItem({ name, number, func, id }) {
   return (
     <li className="list-group-item">
       <h3 className="text-muted">{name}</h3>
-      <p>{number}</p>
+      <p className="note note-secondary">
+        <strong>Number: </strong>
+        {number}
+      </p>
       <div className="position-absolute top-0 end-0">
         <button
           type="button"
