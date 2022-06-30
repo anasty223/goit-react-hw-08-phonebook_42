@@ -32,8 +32,6 @@ export default function Contacts() {
   };
   return (
     <Container>
-      <h2 style={styles.h2}>Phonebook</h2>
-
       <Form contacts={data} />
 
       <Filter />

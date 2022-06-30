@@ -19,7 +19,7 @@ const Navigation = () => {
                       isActive ? style.activeStyle : style.navLink
                     }
                   >
-                    <h3 className="display-6">Home</h3>
+                    <h3>Home</h3>
                   </NavLink>
                 </button>
               </li>
@@ -32,7 +32,7 @@ const Navigation = () => {
                         isActive ? style.activeStyle : style.navLink
                       }
                     >
-                      <h3 className="display-6">Phonebook</h3>
+                      <h3>Phonebook</h3>
                     </NavLink>
                   )}
                 </button>
