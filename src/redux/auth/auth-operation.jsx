@@ -15,28 +15,36 @@ const token = {
 
 export const register = createAsyncThunk(
   "auth/register",
-  async (credentials) => {
+  async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post("/users/signup", credentials);
       token.set(data.token);
       toast.success("Welcome!");
       return data;
     } catch (error) {
-      alert.error("Registration error, please try again");
+      if (error.response.data.name === "MongoError") {
+        return thunkAPI.rejectWithValue("isRegisterPasswordAlertShown");
+      }
+      // alert.error("Registration error, please try again");
     }
   }
 );
-export const logIn = createAsyncThunk("auth/login", async (credential) => {
-  try {
-    const { data } = await axios.post("/users/login", credential);
-    console.log("login=======data", data);
-    token.set(data.token);
-    toast.success("Welcome!");
-    return data;
-  } catch (error) {
-    alert("Incorrect password or login, try again");
+export const logIn = createAsyncThunk(
+  "auth/login",
+  async (credential, thunkAPI) => {
+    try {
+      const { data } = await axios.post("/users/login", credential);
+      console.log("login=======data", data);
+      token.set(data.token);
+      toast.success("Welcome!");
+      return data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue("isLogInAlertShown");
+      // alert("Incorrect password or login, try again");
+    }
   }
-});
+);
 
 export const logOut = createAsyncThunk("auth/logout", async () => {
   try {
