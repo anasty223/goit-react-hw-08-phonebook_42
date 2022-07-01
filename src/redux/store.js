@@ -17,13 +17,15 @@ import {
   REGISTER,
 } from "redux-persist";
 
-const middleware = [
-  ...getDefaultMiddleware({
+const middleware = (getDefaultMiddleware) =>
+  getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
-  }).concat(contactsApi.middleware),
-];
+  })
+    .concat(logger)
+    .concat(contactsApi.middleware);
+
 const persistConfig = {
   key: "items",
   storage,
@@ -38,7 +40,7 @@ const authPersistConfig = {
 
 const store = configureStore({
   reducer: {
-    contacts: todoReducer, //persistReducer(persistConfig, todoReducer),
+    contacts: persistReducer(persistConfig, todoReducer),
     [contactsApi.reducerPath]: contactsApi.reducer,
     auth: persistReducer(authPersistConfig, authReducer),
   },
