@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/625.d36ad39e.chunk.js","mappings":"6MAAe,SAASA,IACtB,OAAO","sources":["components/Home/Home.js"],"sourcesContent":["export default function Home() {\r\n  return <div>Home</div>;\r\n}\r\n"],"names":["Home"],"sourceRoot":""}
