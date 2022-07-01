@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,7 +47,7 @@ function App() {
             element={
               <PublicRoute
                 component={<RegisterView />}
-                navigateTo="/phonebook"
+                navigateTo="/contacts"
                 restricted
               />
             }
@@ -58,18 +58,19 @@ function App() {
             element={
               <PublicRoute
                 component={<LoginView />}
-                navigateTo="/phonebook"
+                navigateTo="/contacts"
                 restricted
               />
             }
           />
 
           <Route
-            path="/phonebook"
+            path="/contacts"
             element={
               <PrivateRoute component={<Contacts />} navigateTo="/login" />
             }
           />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
     </>

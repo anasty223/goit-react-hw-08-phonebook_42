@@ -27,12 +27,12 @@ const Navigation = () => {
                 <button type="button" className="btn  px-3 me-2">
                   {isLoggedIn && (
                     <NavLink
-                      to={"/phonebook"}
+                      to={"/contacts"}
                       className={({ isActive }) =>
                         isActive ? style.activeStyle : style.navLink
                       }
                     >
-                      <h3>Phonebook</h3>
+                      <h3>Contacts</h3>
                     </NavLink>
                   )}
                 </button>
