@@ -20,7 +20,7 @@ export default function UserMenu() {
     isLoggIn && (
       <>
         <div style={styles.container}>
-          <Navbar.Brand>Welcome, {name}</Navbar.Brand>
+          <Navbar.Brand>Welcome,{name}</Navbar.Brand>
 
           <Button
             className="mr-10"
