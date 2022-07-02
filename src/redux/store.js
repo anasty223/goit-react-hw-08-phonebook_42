@@ -40,7 +40,7 @@ const authPersistConfig = {
 
 const store = configureStore({
   reducer: {
-    contacts: persistReducer(persistConfig, todoReducer),
+    contacts: todoReducer,
     [contactsApi.reducerPath]: contactsApi.reducer,
     auth: persistReducer(authPersistConfig, authReducer),
   },
